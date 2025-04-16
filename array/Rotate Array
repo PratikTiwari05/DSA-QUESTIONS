@@ -1,0 +1,28 @@
+// Problem: Rotate Array (Leetcode 189)
+// Approach: Reverse Technique
+// Time Complexity: O(n)
+// Space Complexity: O(1) — In-place
+// Description:
+// Given an integer array `nums`, rotate the array to the right by `k` steps, where `k` is non-negative.
+// The reverse approach involves three steps:
+// 1. Reverse the entire array.
+// 2. Reverse the last (n - k) elements.
+// 3. Reverse the first k elements.
+// This results in the array being rotated right by k positions.
+
+void rotate(vector<int>& nums, int k) {
+    int n = nums.size();
+    k %= n;  // Handle cases where k >= n
+
+    // Step 1: Reverse the entire array
+    reverse(nums.begin(), nums.end()); 
+    // Example: [1,2,3,4,5,6,7] -> [7,6,5,4,3,2,1]
+
+    // Step 2: Reverse the subarray from index k to end
+    reverse(nums.begin() + k, nums.end()); 
+    // Example: [7,6,5,4,3,2,1] -> [7,6,5,1,2,3,4]
+
+    // Step 3: Reverse the first k elements
+    reverse(nums.begin(), nums.begin() + k); 
+    // Example: [7,6,5,1,2,3,4] -> [5,6,7,1,2,3,4]
+}
