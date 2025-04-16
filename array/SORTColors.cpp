@@ -8,19 +8,25 @@
 
 void sortColors(vector<int>& nums) {
     int size = nums.size();
-    int index = 0;       // Pointer to traverse the array
-    int left = 0;        // Pointer to place next 0
-    int right = size - 1; // Pointer to place next 2
+    int index = 0;         // Pointer to traverse the array
+    int left = 0;          // Pointer to place next 0
+    int right = size - 1;  // Pointer to place next 2
 
-    while(index <= right) {
-        if(nums[index] == 0) {
-            // Swap current element with left pointer and move both
+    while (index <= right) {
+        if (nums[index] == 0) {
             swap(nums[index], nums[left]);
             left++;
             index++;
-        }
-        else if(nums[index] == 2) {
-            // Swap current element with right pointer and move only right
+        } 
+        else if (nums[index] == 2) {
             swap(nums[index], nums[right]);
             right--;
-            // Don't increment index because the swapped element needs to
+            // Do not increment index because the element swapped from the right 
+            // could be 0, 1, or 2, and needs to be processed.
+        } 
+        else {
+            // If the element is 1, move on
+            index++;
+        }
+    }
+}
