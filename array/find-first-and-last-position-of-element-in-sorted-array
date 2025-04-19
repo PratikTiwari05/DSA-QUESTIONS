@@ -1,0 +1,46 @@
+// Problem: Find First and Last Position of Element in Sorted Array
+// This function returns the starting and ending position of a given target value in a sorted array.
+// If the target is not found, it returns [-1, -1].
+// Time Complexity: O(log n) for both first and last occurrence using binary search
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n = nums.size();
+        int s = 0;
+        int e = n - 1;
+        int ans1 = -1; // Store first position
+        int ans = -1;  // Store last position
+
+        // Step 1: Find the first occurrence of the target
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            if (nums[mid] == target) {
+                ans1 = mid;      // Store the answer
+                e = mid - 1;     // Move to the left half
+            } else if (nums[mid] < target) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+
+        // Step 2: Find the last occurrence of the target
+        s = 0;
+        e = n - 1;
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            if (nums[mid] == target) {
+                ans = mid;       // Store the answer
+                s = mid + 1;     // Move to the right half
+            } else if (nums[mid] < target) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+
+        return {ans1, ans};
+    }
+};
