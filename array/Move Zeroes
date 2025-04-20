@@ -1,0 +1,12 @@
+// Function to move all zeroes to the end of the array while maintaining the order of non-zero elements
+void moveZeroes(vector<int>& nums) {
+    int j = 0; // Pointer to track the position to place the next non-zero element
+
+    for (int i = 0; i < nums.size(); i++) {
+        // If the current element is non-zero, swap it with the element at index j
+        if (nums[i] != 0) {
+            swap(nums[i], nums[j]);
+            j++; // Move j to the next position
+        }
+    }
+}
