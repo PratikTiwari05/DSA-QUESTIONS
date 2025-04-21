@@ -1,0 +1,26 @@
+/*
+    Title   : Missing Number (Leetcode 268)
+    Author  : Pratik Tiwari
+    Date    : April 21, 2025
+    Purpose : Find the missing number in a given range [0, n] using the Sum Formula.
+    Approach: Use the mathematical formula for the sum of the first 'n' natural numbers 
+              and subtract the sum of the given array to find the missing number.
+*/
+
+#include <vector>
+using namespace std;
+
+int missingNumber(vector<int>& nums) {
+    int n = nums.size(); // Total elements in the array (should be from 0 to n with one missing)
+    
+    int sum = 0; // Variable to store the sum of all elements in the array
+    for(int i = 0; i < n; i++) {
+        sum += nums[i]; // Accumulate sum of all given numbers
+    }
+
+    // Expected sum of numbers from 0 to n using formula: n*(n+1)/2
+    int expectedSum = (n * (n + 1)) / 2;
+
+    // The missing number is the difference between expectedSum and actual sum
+    return expectedSum - sum;
+}
