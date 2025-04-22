@@ -1,0 +1,37 @@
+/*
+ * Title: Remove Element from Vector
+ * Author: Pratik Tiwari
+ * Description:
+ *   This function removes all occurrences of a given value `val` from the vector `nums`
+ *   in-place using the C++ STL `remove` and `erase` idiom. It returns the new size
+ *   of the vector after the removal operation.
+ *
+ * Approach:
+ *   1. Use the `std::remove` algorithm to shift all elements not equal to `val` 
+ *      to the beginning of the vector. It returns an iterator to the new logical end.
+ *   2. Use the `vector::erase` function to actually erase the unwanted elements
+ *      from the logical end to the physical end of the vector.
+ *   3. Return the updated size of the vector after the erase operation.
+ *
+ * Time Complexity:
+ *   - O(n), where n is the size of the vector. This is because both `remove` and `erase`
+ *     operate in linear time.
+ *
+ * Space Complexity:
+ *   - O(1) extra space. The operation is done in-place.
+ *
+ * Example:
+ *   Input: nums = [3, 2, 2, 3], val = 3
+ *   After function call: nums = [2, 2], return value = 2
+ */
+
+int removeElement(vector<int>& nums, int val) {
+    // Shift non-val elements forward and return new end position.
+    auto newEnd = remove(nums.begin(), nums.end(), val);
+    
+    // Erase all elements from new logical end to actual end of vector.
+    nums.erase(newEnd, nums.end());
+    
+    // Return the new size of the modified vector.
+    return nums.size();
+}
