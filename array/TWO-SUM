@@ -1,0 +1,33 @@
+/*
+    Title   : Two Sum (Leetcode 1)
+    Author  : Pratik Tiwari
+    Date    : April 23, 2025
+    Purpose : Find indices of two numbers in the array that add up to a specific target.
+    Approach: Use a brute-force approach by checking all possible pairs using nested loops.
+              Return the first pair of indices whose values sum up to the target value.
+*/
+
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int size = nums.size(); // Total number of elements in the array
+
+        // Iterate through each element in the array
+        for (int i = 0; i < size; i++) {
+            // For each element, check the rest of the array
+            for (int j = i + 1; j < size; j++) {
+                // Check if the sum of nums[i] and nums[j] equals the target
+                if (nums[i] + nums[j] == target) {
+                    // Return the pair of indices if a valid pair is found
+                    return {i, j};
+                }
+            }
+        }
+
+        // Return an empty vector if no such pair exists
+        return {};
+    }
+};
