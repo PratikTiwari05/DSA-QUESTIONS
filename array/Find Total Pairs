@@ -2,6 +2,9 @@
 #include <map>
 using namespace std;
 
+//Brute force using 2 loops i and j and applying condition will also work but takes O(n^2) Complexity
+
+
 /**
  * Function to count the number of valid pairs (i, j) such that:
  * arr[i] - i == arr[j] - j, where i != j.
