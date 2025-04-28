@@ -1,0 +1,70 @@
+/*Ques:Ninja wants the hero certificate to get the support of local police and government to help the people. But to get the hero certificate he needs to clear an exam.
+
+The exam consists of ‘N’ questions from ‘1’ to ‘N’. To clear the exam Ninja needs to solve in a particular order. He needs to leave one question after solving one question(assume that after ‘N’th question he will come back to the first question). He will perform this action till all questions are solved. Help Ninja in exams by telling him the order.
+
+For Example:
+If there are ‘5’ questions then the order will be:
+“ 2 4 1 5 3 ”
+*/
+
+//Author:Pratik Tiwari
+//Approach: It has talked about that will be back to first element of array :->Hint(Circular Linked List Will be Very Helpful)
+//Using linked list create a class of Node and add details to it (refer to code for that)
+
+/*Later you push all elements from 1 to n in linked list(Always check for condition of while loop)
+later There is one logic that you first catch by test case which to print and delete and which to skip("Count") a hint for you rest refer to code
+one mistake that i did was not pushing last element to ans vector*/
+
+This question first i got hint from gpt about using linked list later code by me and finally made it in 1hr
+
+
+
+
+#include <bits/stdc++.h> 
+class Node{
+	public:
+	int data;
+	Node*next;
+	Node(int data){
+		this->data=data;
+		this->next=nullptr;
+	}
+};
+vector<int> theOrder(int n)
+{
+	vector<int>ans;
+	//Fill All Value From 1 to n in circular list
+	Node* dummyNode=new Node(-1);
+	Node*temp=dummyNode;
+	int cnt=1;
+	while(cnt<=n){
+   //create a new Node
+   Node*data=new Node(cnt);
+   cnt++;
+   temp->next=data;
+   temp=temp->next;
+	}
+	temp->next=dummyNode->next;
+	Node*head=dummyNode->next;
+	Node*curr=head;
+	Node*prev=nullptr;
+	int count=1;
+	while(curr!=curr->next){
+     if(count%2!=0){
+		prev=curr;
+		curr=curr->next;
+	 }
+	 else{
+		 ans.push_back(curr->data);
+		 Node*temp=curr;
+		 prev->next=temp->next;
+		 delete temp;
+		 curr=prev->next;
+	 }
+	 count++;
+	}
+	if(curr!=nullptr){
+		ans.push_back(curr->data);
+	}
+	return ans;
+}
