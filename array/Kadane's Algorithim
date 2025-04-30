@@ -1,0 +1,21 @@
+/*
+    Function: maxSubarraySum
+    Description: Finds the maximum sum of a contiguous subarray using Kadane's Algorithm.
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+*/
+
+int maxSubarraySum(vector<int> &arr) {
+    int maxsum = INT_MIN;
+    int currsum = 0;
+
+    for (int i = 0; i < arr.size(); i++) {
+        currsum += arr[i];
+        maxsum = max(maxsum, currsum);
+        if (currsum < 0) {
+            currsum = 0;
+        }
+    }
+
+    return maxsum;
+}
