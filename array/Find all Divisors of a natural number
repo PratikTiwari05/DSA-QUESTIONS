@@ -1,3 +1,4 @@
+//This solution run O(n) complexity
 #include <bits/stdc++.h> 
 vector<int> getAllDivisors(int n){
     vector<int>ans;
@@ -6,5 +7,28 @@ vector<int> getAllDivisors(int n){
             ans.push_back(i);
         }
     }
+    return ans;
+}
+
+
+//The code run from O(root n)
+just take care of case when i!=n/i else identical value will be pushed so taking a red handlew over there
+
+code:-
+#include <bits/stdc++.h> 
+vector<int> getAllDivisors(int n){
+   vector<int>ans;
+    if(n==0){
+        ans.push_back(0);
+    }
+    for(int i=1;i*i<=n;i++){
+        if(n%i==0){
+            ans.push_back(i);
+            if(i!=n/i){
+                ans.push_back(n/i);
+            }
+        }
+    }
+    sort(ans.begin(),ans.end());
     return ans;
 }
