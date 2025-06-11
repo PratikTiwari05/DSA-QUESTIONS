@@ -1,0 +1,11 @@
+#include <bits/stdc++.h> 
+bool isBinary(string &bin) {
+    // Write your code here.
+    int n=bin.size();
+    for(int i=0;i<n;i++){
+        if(bin[i]!='0'&& bin[i]!='1'){
+            return false;
+        }
+    }
+    return true;
+}
