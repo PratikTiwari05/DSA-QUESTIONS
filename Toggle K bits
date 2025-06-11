@@ -1,0 +1,10 @@
+#include <bits/stdc++.h> 
+int toggleKBits(int n, int k) {
+    // Write your code here.
+    bitset<32>b(n);
+    for(int i=0;i<k;i++){
+        b[i].flip();
+    }
+   int val= (int)b.to_ulong();
+   return val;
+}
