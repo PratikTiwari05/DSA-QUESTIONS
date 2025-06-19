@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+int getLongestSubarrayLength(vector<int> &arr, int limit)
+{
+    deque<int>maxValue;
+    deque<int>minValue;
+    int n=arr.size();
+	int i=0;
+    int j=0;
+    int maxlen=0;
+    while(j<n){
+    while(!maxValue.empty() && arr[j]>maxValue.back()){
+        maxValue.pop_back();
+    }
+    while(!minValue.empty() && arr[j]<minValue.back()){
+        minValue.pop_back();
+    }
+      maxValue.push_back(arr[j]);
+      minValue.push_back(arr[j]);
+        while(!maxValue.empty() && !minValue.empty() && (maxValue.front()-minValue.front())>limit){
+            if(arr[i]==maxValue.front()){
+                maxValue.pop_front();
+            }
+            if(arr[i]==minValue.front()){
+                minValue.pop_front();
+            }
+            i++;
+        }
+       
+            maxlen=max(maxlen,j-i+1);
+            j++;
+    }
+    return maxlen;
+}
