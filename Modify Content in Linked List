@@ -1,0 +1,105 @@
+class Solution {
+  public:
+    int getLength(struct Node* head) {
+        Node* temp = head;
+        int length = 0;
+        while (temp != NULL) {
+            length++;
+            temp = temp->next;
+        }
+        return length;
+    }
+
+    struct Node* reverse(struct Node* head) {
+        struct Node* prev = NULL;
+        struct Node* curr = head;
+        while (curr != NULL) {
+            struct Node* temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+    }
+
+    struct Node* middle(struct Node* head) {
+        struct Node* slow = head;
+        struct Node* fast = head;
+        while (fast != NULL) {
+            fast = fast->next;
+            if (fast != NULL) {
+                fast = fast->next;
+                slow = slow->next;
+            }
+        }
+        return slow;
+    }
+
+    struct Node* modifyTheList(struct Node* head) {
+        int n = getLength(head);
+        
+        if (n & 1) {
+            // ODD NODE LOGIC
+            struct Node* mid = middle(head);
+            struct Node* prev = NULL;
+            struct Node* temp = head;
+            
+            while (temp != mid) {
+                prev = temp;
+                temp = temp->next;
+            }
+            
+            prev->next = NULL;
+            temp = head;
+            struct Node* temp1 = mid->next;
+            mid->next = NULL;
+
+            struct Node* secondHalfReversedHead = reverse(temp1);
+            temp1 = secondHalfReversedHead;
+            struct Node* firstHalfEnd = NULL;
+            
+            while (temp != NULL && temp1 != NULL) {
+                int val = temp->data;
+                temp->data = temp1->data - temp->data;
+                temp1->data = val;
+                firstHalfEnd = temp;
+                temp = temp->next;
+                temp1 = temp1->next;
+            }
+
+            firstHalfEnd->next = mid;
+            mid->next = reverse(secondHalfReversedHead);
+        } 
+        else {
+            // EVEN NODE LOGIC
+            struct Node* mid = middle(head);
+            struct Node* prev = NULL;
+            struct Node* temp = head;
+            
+            while (temp != mid) {
+                prev = temp;
+                temp = temp->next;
+            }
+            
+            prev->next = NULL;
+            temp = head;
+            struct Node* temp1 = mid;
+            struct Node* revSecondHalfHead = reverse(temp1);
+            temp1 = revSecondHalfHead;
+            struct Node* firstHalfEnd = NULL;
+
+            while (temp != NULL && temp1 != NULL) {
+                int val = temp->data;
+                temp->data = temp1->data - temp->data;
+                temp1->data = val;
+                firstHalfEnd = temp;
+                temp = temp->next;
+                temp1 = temp1->next;
+            }
+
+            firstHalfEnd->next = reverse(revSecondHalfHead);
+        }
+
+        return head;
+    }
+};
