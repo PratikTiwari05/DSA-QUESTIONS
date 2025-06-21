@@ -1,0 +1,10 @@
+#include <bits/stdc++.h> 
+int ninjaAndTriangle(int n) {
+    int count=n;
+    int i=1;
+    while(count>i){
+        count-=i;
+        i++;
+    }
+    return i-1;
+}
