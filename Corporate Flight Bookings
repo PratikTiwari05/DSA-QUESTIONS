@@ -1,0 +1,13 @@
+#include <bits/stdc++.h> 
+vector< int > corpFlightBookings(vector< vector < int > > &bookings, int n) {
+	vector<int>ans(n,0);
+	for(auto booking:bookings){
+		int i=booking[0];
+		int j=booking[1];
+		int seat=booking[2];
+		for(int k=i;k<=j;k++){
+          ans[k-1]+=seat;
+		}
+	}
+	return ans;
+}
