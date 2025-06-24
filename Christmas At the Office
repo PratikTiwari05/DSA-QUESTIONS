@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+int totalStrings(string s) {
+    //    Write your code here
+    unordered_map<char,int>freq;
+    int n=s.size();
+    int val=0;
+    int k=3;
+  int i=0;
+  int j=0;
+  while(j<n){
+      freq[s[j]]++;
+
+      while(freq.size()>2){
+          freq[s[i]]--;
+
+          if(freq[s[i]]==0){
+              freq.erase(s[i]);
+          }
+          i++;
+      }
+      val+=(j-i+1);
+      j++;
+  }
+  return val;
+}
