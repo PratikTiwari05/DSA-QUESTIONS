@@ -1,0 +1,43 @@
+/*
+Structure of the node of the binary tree is as
+struct Node
+{
+    int data;
+    struct Node *left, *right;
+};
+*/
+// your task is to complete this function
+class Solution {
+  public:
+    void path(Node*root,int node,deque<int>&dq){
+        if(root==NULL){
+            return;
+        }
+        dq.push_back(root->data);
+        if(root->data==node){
+            return;
+        }
+        
+        path(root->left,node,dq);
+        if (dq.back() == node) return;
+        path(root->right,node,dq);
+        if ( dq.back() == node) return;
+        
+        dq.pop_back();
+    }
+    int kthAncestor(Node *root, int k, int node) {
+        deque<int>dq;
+        path(root,node,dq);
+        int count=0;
+        if(dq.empty()){
+            return -1;
+        }
+        while(!dq.empty() && count!=k){
+            dq.pop_back();
+            count++;
+        }
+        if(dq.empty()) return -1;
+        
+        return dq.back();
+    }
+};
