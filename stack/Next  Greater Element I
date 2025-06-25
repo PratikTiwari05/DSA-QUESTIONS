@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    vector<int> nextLargerElement(vector<int>& arr) {
+        // code here
+        int n=arr.size();
+        vector<int>ans(n);
+        stack<int>st;
+        st.push(-1);
+        for(int i=n-1;i>=0;i--){
+            //POP condition
+            //if stack k top m chota element ha arr[i] s pop krdo
+            //Agla bada no chahiye na ki chota so hatdo usse
+            while(!st.empty() && st.top()<=arr[i]){
+                st.pop();
+            }
+            if(st.empty()){
+                ans[i]=-1;
+            }
+            else{
+                ans[i]=st.top();
+            }
+            st.push(arr[i]);
+        }
+        return ans;
+    }
+};
