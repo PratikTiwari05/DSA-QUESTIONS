@@ -1,0 +1,13 @@
+void path(TreeNode*root,queue<TreeNode*>&q){
+        if(root==NULL){
+            return;
+        }
+        q.push(root);
+        path(root->left,q);
+        path(root->right,q);
+    }
+    int countNodes(TreeNode* root) {
+       queue<TreeNode*>q;
+       path(root,q);
+       return q.size();
+    }
