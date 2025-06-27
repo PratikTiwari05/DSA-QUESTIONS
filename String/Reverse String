@@ -1,1 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
 
+string reverseStringWordWise(string input)
+{
+    reverse(input.begin(),input.end());
+    int n=input.size();
+    int i=0;
+    int j=0;
+    while(j<n){
+        if(input[j]==' '){
+        reverse(input.begin()+i,input.begin()+j);
+        i=j+1;
+        }
+        if(j==n-1){
+            reverse(input.begin()+i,input.end());
+            break;
+        }
+        j++;
+    }
+    return input;
+}
+
+int main()
+{
+    string s;
+    getline(cin, s);
+    string ans = reverseStringWordWise(s);
+    cout << ans << endl;
+}
