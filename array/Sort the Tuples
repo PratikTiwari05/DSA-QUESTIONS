@@ -1,0 +1,6 @@
+#include <bits/stdc++.h> 
+void sortTuples(vector<vector<int>>&arr){
+    stable_sort(arr.begin(),arr.end(),[] (const vector<int>&a, const vector<int>&b){
+        return a.back() < b.back();
+    });
+}
