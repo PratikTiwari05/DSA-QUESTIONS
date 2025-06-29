@@ -1,0 +1,37 @@
+Node *removeLoop(Node *head)
+{
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+   Node*slow=head;
+   Node*fast=head;
+   //ALGO-TO DETECT LOOP
+   while(fast!=NULL){
+       fast=fast->next;
+       if(fast!=NULL){
+           fast=fast->next;
+           slow=slow->next;
+       }
+
+       if(fast==slow){
+           //loop detected
+           break;
+       }
+   }
+   if(fast==NULL){
+       return head;
+   }
+//FETCH THE STARTING POINT OF LOOP
+  slow=head;
+  while(slow!=fast){
+      slow=slow->next;
+       fast=fast->next;
+  }
+  //fast/slow->stored starting point of loop
+  Node*temp=fast;
+  while(temp->next!=fast){
+      temp=temp->next;
+  }
+  temp->next=NULL;
+  return head;
+}
