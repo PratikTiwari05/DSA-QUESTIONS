@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+int findMinDiff(int n, int m, vector<int> chocolates) {
+    sort(chocolates.begin(),chocolates.end());
+    int mindiff = INT_MAX;
+    int i = 0;
+    int j = m - 1;
+    while (j < n) {
+        int val1 = *max_element(chocolates.begin() + i, chocolates.begin() + j + 1);
+        int val2 = *min_element(chocolates.begin() + i, chocolates.begin() + j + 1);
+        mindiff = min(mindiff, val1 - val2);
+        i++;
+        j++;
+    }
+    return mindiff;
+}
