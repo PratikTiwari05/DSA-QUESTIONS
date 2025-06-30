@@ -1,0 +1,6 @@
+#include <bits/stdc++.h> 
+int findThirdLagrest(vector < int > & arr) {
+  sort(arr.begin(),arr.end());
+  reverse(arr.begin(),arr.end());
+  return arr[2];
+}
