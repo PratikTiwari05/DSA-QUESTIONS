@@ -1,0 +1,46 @@
+Node<int>* reverse(Node<int>* head){
+    Node<int>* prev=NULL;
+    Node<int>* curr=head;
+    while(curr!=NULL){
+        Node<int>* temp=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=temp;
+    }
+    return prev;
+}
+
+Node<int>* addTwoLists(Node<int>* first, Node<int>* second) {
+    first=reverse(first);
+    second=reverse(second);
+
+Node<int>* dummyNode= new Node<int>(-1);
+Node<int>* t=dummyNode;
+int carry=0;
+Node<int>* temp1=first;
+Node<int>* temp2=second;
+while(temp1!=NULL || temp2!=NULL){
+    int sum=carry;
+    if(temp1!=NULL){
+     sum+=temp1->data;
+     temp1=temp1->next;
+    }
+     if(temp2!=NULL){
+     sum+=temp2->data;
+     temp2=temp2->next;
+    }
+    
+    carry=sum/10;
+    int val=sum%10;
+    Node<int>* newNode= new Node<int>(val);
+    t->next=newNode;
+    t=newNode;
+}
+if(carry!=0){
+      Node<int>* newNode= new Node<int>(carry);
+      t->next=newNode;
+}
+Node<int>* newHead=reverse(dummyNode->next);
+return newHead;
+
+}
