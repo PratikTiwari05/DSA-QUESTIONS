@@ -1,0 +1,61 @@
+/********************************************************
+
+    Following is the class structure of the Node class:
+    
+    class Node
+    {
+    	public:
+    	    int data;
+    	    Node *next;
+    	    Node(int data)
+    	    {
+    	        this->data = data;
+    	        this->next = NULL;
+    	    }
+    };
+
+********************************************************/
+
+Node*reverse(Node*head){
+Node*prev=NULL;
+	Node*curr=head;
+	while(curr!=NULL){
+		Node*temp=curr->next;
+		curr->next=prev;
+		prev=curr;
+		curr=temp;
+	}
+	return prev;
+}
+Node *reverseLL(Node *head, int low, int high) {
+	// Write your code here.
+	Node*dummyNode= new Node(-1);
+	Node*t=dummyNode;
+	int count=1;
+	Node*prev=NULL;
+	Node*curr=head;
+	while(count!=low){
+		prev=curr;
+		curr=curr->next;
+		count++;
+	}
+	//current node is at low position
+	t->next=curr;
+	while(count!=high){
+     curr=curr->next;
+	 count++;
+	}
+	//count==high
+	Node*last=curr->next;
+	curr->next=NULL;
+	Node*reverseHead= reverse(dummyNode->next);
+if(prev!=NULL)prev->next=reverseHead;
+else head=reverseHead;
+	Node*temp=reverseHead;
+	while(temp->next!=NULL){
+		temp=temp->next;
+	}
+	temp->next=last;
+	return head;
+
+}
