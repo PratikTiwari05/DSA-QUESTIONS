@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+string reverseStringsInParentheses(string s, int n){
+
+    // Write your code here.
+    // This function returns the reversed string output without the parentheses.
+  stack<char>st;
+  for(int i=0;i<n;i++){
+      char ch=s[i];
+      if(ch==')'){
+          string ans="";
+          while(st.top()!='('){
+              ans+=st.top();
+              st.pop();
+          }
+          st.pop(); //poping the open bracket
+          for(int i=0;i<ans.size();i++){
+              st.push(ans[i]);
+          }
+      }
+      else{
+          st.push(ch);
+      }
+  }
+
+  //return final ans
+  string finalans="";
+  while(!st.empty()){
+      finalans+=st.top();
+      st.pop();
+  }
+reverse(finalans.begin(),finalans.end());
+  return finalans;
+}
