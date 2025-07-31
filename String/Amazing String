@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+string amazingStrings(string first, string second,string third) {
+    unordered_map<char,int>mp1;
+     unordered_map<char,int>mp2;
+
+     for(int i=0;i<first.size();i++){
+         mp1[first[i]]++;
+     }
+     for(int i=0;i<second.size();i++){
+         mp1[second[i]]++;
+     }
+     for(int i=0;i<third.size();i++){
+        mp2[third[i]]++;
+     }
+     for(auto it:mp1){
+         if(mp2.find(it.first)==mp2.end()){
+             return "NO";
+         }
+         if(mp2[it.first]<it.second|| mp2[it.first]>it.second){
+             return "NO";
+         }
+     }
+     return "YES";
+}
