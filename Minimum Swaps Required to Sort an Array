@@ -6,12 +6,12 @@ void minSwaps(vector<int>arr){
     sort(temp.begin(),temp.end());
     unordered_map<int,int>mp;
     for(int i=0;i<arr.size();i++){
-        mp[arr[i]]++;
+        mp[arr[i]]=i;
     }
     int swapCount=0;
     for(int i=0;i<arr.size();i++){
         if(temp[i]!=arr[i]){
-            int index=mp[arr[i]];
+            int index=mp[temp[i]];
             swap(arr[i],arr[index]);
             mp[arr[i]]=i;
             mp[arr[index]]=index;
