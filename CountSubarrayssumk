@@ -1,0 +1,31 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+int subarraySum(vector<int>arr,int k){
+    int count=0;
+    int n=arr.size();
+    vector<int>prefix(n);
+    prefix[0]=arr[0];
+    for(int i=1;i<n;i++){
+        prefix[i]=arr[i]+prefix[i-1];
+    }
+    unordered_map<int,int>mp;
+    for(int i=0;i<n;i++){
+        if(prefix[i]==k){
+       count++;
+        }
+        int rem=prefix[i]-k;
+        if(mp.find(rem)!=mp.end()){
+          count+=mp[rem];
+        }
+         mp[prefix[i]]=i;
+    }
+    return count;
+}
+int main() {
+    vector<int>arr={10, 5, 2, 7, 1, -10};
+    int k=15;
+    int ans=longestsubarraySum(arr,k);
+    cout<<ans<<endl;
+    return 0;
+}
