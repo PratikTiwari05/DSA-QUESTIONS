@@ -1,0 +1,37 @@
+class Main {
+     public static  String addition(String a, String b){
+        //reverse both string to first add most significant bit
+        String reverseda=new StringBuilder(a).reverse().toString();
+        String reversedb=new StringBuilder(b).reverse().toString();  
+        int n=reverseda.length();
+        int m=reversedb.length();
+        int i=0;
+        int j=0;
+        int carry=0;
+        StringBuilder ans=new StringBuilder();
+        while(i<n || j<m){
+         int val1=i<n?reverseda.charAt(i)-'0':0;
+         int val2=j<m?reversedb.charAt(j)-'0':0;
+         int sum=val1+val2+carry;
+         if(sum>=2){
+            sum=sum-2;
+            carry=1;
+         }
+         ans.append(sum);
+         i++;
+         j++;
+        }
+        if(carry!=0){
+            ans.append(carry+'0');
+        }
+        return ans.toString();
+    }
+    public static void main(String[] args) {
+       String a="1000";
+       String b="0100";
+       String ans=addition(a,b);
+       System.out.println(ans);
+       int value=Integer.parseInt(ans,2);
+       System.out.println(value);
+    }
+}
