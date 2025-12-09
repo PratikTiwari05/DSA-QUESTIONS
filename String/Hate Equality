@@ -2,7 +2,6 @@ Problem statement
 There are two strings 'S' and 'T', each having 'N' lowercase English characters. Initially, both strings are equal.
 
 
-
 You don't want the string 'T' equal to 'S'. For this, you can reshuffle the characters of the string 'T'.
 
 
