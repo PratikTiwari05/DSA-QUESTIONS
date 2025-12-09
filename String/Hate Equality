@@ -1,0 +1,39 @@
+Problem statement
+There are two strings 'S' and 'T', each having 'N' lowercase English characters. Initially, both strings are equal.
+
+
+
+You don't want the string 'T' equal to 'S'. For this, you can reshuffle the characters of the string 'T'.
+
+
+
+Determine if you can make the string 'T' different from 'S' after reshuffling the characters of the string 'T'.
+
+
+
+Return '1' if you can make the string 'T' different from 'S'. Otherwise, return '0'.
+
+
+
+Example:
+N = 7
+S = 'aab'
+Initially, the string 'T' is equal to 'aab'.
+You can shuffle the characters such that 'T' equals 'aba'. So 'T' is not equal to 'S'.
+So, the answer for this case is '1'.
+
+
+
+
+code:
+int canYouMakeDifference(int n, string &s) {
+    // Write your code here.
+    unordered_set<char>st;
+    for(int i=0;i<n;i++){
+        st.insert(s[i]);
+    }
+    if(st.size()<=1){
+        return 0;
+    }
+    return 1;
+}
