@@ -1,0 +1,26 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	
+	public static int longestMountain(int arr[], int n)
+	{
+		int ans=0;
+		for(int i=1;i<n-1;i++){
+			if(arr[i]>arr[i+1] && arr[i]>arr[i-1]){
+				//peak detected 
+				int left=i;
+				int right=i;
+				//now to detect length
+				while(left>0 && arr[left]>arr[left-1]){
+					left--;
+				}
+				while(right<n-1 && arr[right]>arr[right+1]){
+					right++;
+				}
+				ans=Math.max(ans,right-left+1);
+			}
+		}
+		return ans;
+	}
+
+}
