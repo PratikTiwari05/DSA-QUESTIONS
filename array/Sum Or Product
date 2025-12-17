@@ -1,0 +1,19 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static long sumOrProduct(int n, int q) {
+         long val = (q == 1) ? 0 : 1;
+		 long mod= 1000000007;
+         
+		for(int i=1;i<=n;i++){
+         if(q==1){
+			 val+=i;
+		 }
+		 else{
+			 val=(val*i)%mod;
+		 }
+		}
+		return val;
+	}
+}
