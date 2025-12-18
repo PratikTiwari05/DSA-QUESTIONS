@@ -1,0 +1,29 @@
+Problem statement
+You are given an integer ‘N’ and a prime number ‘P’. Your task is to find the N! modulo P.
+
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints :
+1 <= T <= 10
+1 <= N <= 10^9
+1 <= P <= 10^9
+|N - P| <= 1000
+
+
+
+
+Code:
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+   
+    public static int boringFactorials(int n, int p)
+    {
+        if(n>=p) return 0;
+        long value=1;
+       for(int i=1;i<=n;i++){
+        value=(value*i)%p;
+       }
+       return (int)value;
+    }
+}
