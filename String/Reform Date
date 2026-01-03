@@ -1,0 +1,44 @@
+#include <bits/stdc++.h> 
+string reformDate(string& s) 
+{
+	vector<string>months={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	vector<string>parts;
+	string temp="";
+	for(int i=0;i<s.size();i++){
+		 char ch=s[i];
+		 if(ch==' '){
+			 parts.push_back(temp);
+			 temp="";
+		 }
+		 else{
+			 temp+=ch;
+		 }
+	}
+	parts.push_back(temp);
+	string dateStr=parts[0];
+	string date="";
+	for(int i=0;i<dateStr.size();i++){
+		char ch=dateStr[i];
+		if(ch>='0' && ch<='9'){
+			date+=ch;
+		}
+		else{
+			break;
+		}
+	}
+	if(date.size()==1) {
+		date="0"+date;
+	}
+	string monthStr=parts[1];
+	int mon=0;
+	for(int i=0;i<12;i++){
+		if(months[i]==monthStr){
+			mon=i+1;
+			break;
+		}
+	}
+	string month=(mon<10?"0":"")+to_string(mon);
+	string year=parts[2];
+	return year+"-"+month+"-"+date;
+	
+}
