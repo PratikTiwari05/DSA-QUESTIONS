@@ -1,0 +1,29 @@
+Problem statement
+You are given a string ‘STR’ consisting of lowercase English alphabets.
+Your take is to find out the minimum number of character deletions required such that each character in the final string has a unique frequency.
+
+
+code:
+#include<bits/stdc++.h>
+int minDeletions(string str) {
+    unordered_map<char,int>freq;
+    for(int i=0;i<str.size();i++){
+        freq[str[i]]++;
+    }
+    vector<int>key;
+    for(auto it:freq){
+        key.push_back(it.second);
+    }
+    sort(key.begin(),key.end());
+    reverse(key.begin(),key.end());
+    unordered_set<int>values;
+    int cnt=0;
+    for(int it:key){
+        while(it>0 && values.find(it)!=values.end()){
+            it--;
+            cnt++;
+        }
+        if(it>0) values.insert(it);
+    }
+    return cnt;
+}
